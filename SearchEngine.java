@@ -10,12 +10,15 @@ class Handler implements URLHandler {
             return String.format("This is my search engine!");
         } 
         else if (url.getPath().contains("/add")) {
-                String[] parameters = url.getQuery().split("=");
-                if (parameters[0].equals("s")) {
-                    list.add(parameters[1]);
-                    return String.format("Successfully added " + parameters[1]);
-                }
-        } 
+            String[] parameters = url.getQuery().split("=");
+            if (parameters[0].equals("s")) {
+                list.add(parameters[1]);
+                return String.format("Successfully added " + parameters[1]);
+            }
+        }
+        else if (url.getPath().contains("/list")) {
+            return String.join(", ", list);
+        }
         else {
             if (url.getPath().contains("/search")) {
                 String searchResults = "";
